@@ -1,6 +1,5 @@
 * {
   box-sizing: border-box;
-  flex-wrap: wrap;
 }
 
 /* main text */
@@ -164,10 +163,6 @@ main {
 }
 
 /*planets information */
-.newPage {
-  background-image: url("../img/background-starry-sky-8.jpg");
-}
-
 article {
   color: white;
   display: grid;
