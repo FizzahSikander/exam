@@ -15,15 +15,16 @@ function displayPlanetInfo(planet) {
             <hr class="hr1">
             <h3 class="omkrets"> OMKRETS </h3>
             <p class="omkret">${planet.circumference} km</p>
-            <h3 class="maxtemp"> Max TEMPRETUR </h3>
+            <h3 class="maxtemp"> MAX TEMPERATURE </h3>
             <p class="max">${planet.temp.day} C</p>
-            <h3 class="mintemp"> MIN TEMPRETUR </h3>
-            <p class="min">${planet.night} C</p>
+            <h3 class="mintemp"> MIN TEMPERATURE </h3>
+            <p class="min">${planet.temp.night} C</p>
             <h3 class="km"> KM FRÅN SOLEN</h3>
             <p class="kilo">${planet.distance} </p>
             <hr class="hr2">
             <h3 class="moons">MÅNAR</h3>
             <p class="moon"> ${planet.moons} </p>
+            <button class="back">Back Button</button>
             <figure class="firstSun"></figure>
             <figure class="secondSun"></figure>
             <figure class="thirdSun"></figure>
@@ -47,8 +48,8 @@ async function getPlanets() {
 
 getPlanets();
 
-planetsList.forEach((planet, i) => {
-    planet.addEventListener('click', () => {
+planetsList.forEach((planets, i) => {
+    planets.addEventListener('click', () => {
         const clickedPlanet = planetData[i]; // Access planet data from the stored variable
         displayPlanetInfo(clickedPlanet);
         planetsElem.style.display = 'block';

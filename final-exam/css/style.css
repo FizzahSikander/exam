@@ -166,7 +166,6 @@ main {
 /*planets information */
 .newPage {
   background-image: url("../img/background-starry-sky-8.jpg");
-  display: grid;
 }
 
 article {
@@ -393,3 +392,12 @@ article h4 {
     transform: rotate(360deg);
   }
 } */
+.back{
+  width: 100px;
+  height: 50px;
+  grid-column: 1/2;
+  grid-row: 8/9;
+  margin-left: -50px;
+  background-color: #0d164d;
+  color: white;
+}
