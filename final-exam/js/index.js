@@ -30,8 +30,26 @@ function displayPlanetInfo(planet) {
             <figure class="thirdSun"></figure>
         </article>`;
     planetsElem.innerHTML = planetInfo;
-}
 
+    const backButton = document.querySelector('.back');
+    backButton.addEventListener('click', () => {
+        planetsElem.style.display = 'none';
+        mainElmt.style.display = 'block';
+        h1Elm.style.display = 'block';
+        h3Elm.style.display = 'block';
+        footer.style.display = 'block';
+    });
+};
+// async function getApiKey() {
+//     try {
+//         let resp = await fetch(""https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies"); // Replace with your actual endpoint
+//         const data = await resp.json();
+//         return data.apiKey;
+//     } catch (error) {
+//         console.log('Could not fetch API key');
+//         throw error;
+//     }
+// }
 async function getPlanets() {
     try {
         let resp = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies", {
