@@ -68,9 +68,9 @@ async function getPlanets() {
 }
 
 // Call getApiKey to start the process
-getApiKey();
 planetsList.forEach((planets, i) => {
     planets.addEventListener('click', () => {
+        getApiKey();
         const clickedPlanet = planetData[i]; // Access planet data from the stored variable
         displayPlanetInfo(clickedPlanet);
         planetsElem.style.display = 'block';
