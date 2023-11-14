@@ -5,7 +5,7 @@ const h1Elm = document.querySelector('h1');
 const h3Elm = document.querySelector('h3');
 const footer = document.querySelector('footer');
 let planetData = ''; // Declare a variable to store planet data
-let key= "";
+let key = "";
 function displayPlanetInfo(planet) {
     const planetInfo = `
         <article>
@@ -23,21 +23,18 @@ function displayPlanetInfo(planet) {
             <p class="kilo">${planet.distance} </p>
             <hr class="hr2">
             <h3 class="moons">MÅNAR</h3>
-            <p class="moon"> ${planet.moons} </p>
+            <p class="moon"> ${planet.moons.join(', ')} </p>
             <button class="back">Back Button</button>
-            <figure class="firstSun"></figure>
-            <figure class="secondSun"></figure>
-            <figure class="thirdSun"></figure>
         </article>`;
     planetsElem.innerHTML = planetInfo;
 
     const backButton = document.querySelector('.back');
     backButton.addEventListener('click', () => {
         planetsElem.style.display = 'none';
-        mainElmt.style.display = 'block';
+        mainElmt.style.display = 'grid';
         h1Elm.style.display = 'block';
         h3Elm.style.display = 'block';
-        footer.style.display = 'block';
+        footer.style.display = 'grid';
     });
 };
 async function getApiKey() {

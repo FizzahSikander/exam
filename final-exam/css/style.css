@@ -341,40 +341,10 @@ article h4 {
   border-bottom: none;
 }
 
-.firstSun {
-  position: fixed;
-  width: 1278px;
-  height: 1278px;
-  left: -1160px;
-  top: -189px;
-  background: #428ED5;
-  box-shadow: 0px 0px 250px rgba(255, 208, 41, 0.2);
-  border-radius: 50%;
-}
-
-.secondSun {
-  position: fixed;
-  width: 1340px;
-  height: 1340px;
-  left: -1170px;
-  top: -222px;
-  border-radius: 80%;
-  background: rgba(66, 142, 212, 0.1);
-}
-
-.thirdSun {
-  position: fixed;
-  background: rgba(66, 142, 212, 0.06);
-  width: 1404px;
-  height: 1404px;
-  left: -1184px;
-  top: -254px;
-  border-radius: 90%;
-}
 
 /* for rotation*/
 
-/* aside {
+ aside {
   animation: rotatePlanet 10s linear infinite;
 }
 
@@ -386,7 +356,7 @@ article h4 {
   to {
     transform: rotate(360deg);
   }
-} */
+} 
 .back{
   width: 100px;
   height: 50px;
