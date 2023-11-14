@@ -5,7 +5,7 @@ const h1Elm = document.querySelector('h1');
 const h3Elm = document.querySelector('h3');
 const footer = document.querySelector('footer');
 let planetData = ''; // Declare a variable to store planet data
-
+let key= "";
 function displayPlanetInfo(planet) {
     const planetInfo = `
         <article>
@@ -40,21 +40,27 @@ function displayPlanetInfo(planet) {
         footer.style.display = 'block';
     });
 };
-// async function getApiKey() {
-//     try {
-//         let resp = await fetch(""https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies"); // Replace with your actual endpoint
-//         const data = await resp.json();
-//         return data.apiKey;
-//     } catch (error) {
-//         console.log('Could not fetch API key');
-//         throw error;
-//     }
-// }
+async function getApiKey() {
+    try {
+        let resp = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys", {
+            method: "POST"
+        });
+        const data = await resp.json();
+        console.log(data.key);
+        key = data.key;
+        // Call getPlanets here after getting the API key
+        await getPlanets();
+    } catch (error) {
+        console.log('Could not fetch API key');
+        throw error;
+    }
+}
+
 async function getPlanets() {
     try {
         let resp = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies", {
             method: "GET",
-            headers: { "x-zocom": "solaris-1Cqgm3S6nlMechWO" },
+            headers: { "x-zocom": key },
         });
         const data = await resp.json();
         planetData = data.bodies;
@@ -64,8 +70,8 @@ async function getPlanets() {
     }
 }
 
-getPlanets();
-
+// Call getApiKey to start the process
+getApiKey();
 planetsList.forEach((planets, i) => {
     planets.addEventListener('click', () => {
         const clickedPlanet = planetData[i]; // Access planet data from the stored variable
