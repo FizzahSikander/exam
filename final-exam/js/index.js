@@ -4,8 +4,11 @@ const mainElmt = document.querySelector('main');
 const h1Elm = document.querySelector('h1');
 const h3Elm = document.querySelector('h3');
 const footer = document.querySelector('footer');
-let planetData = ''; // Declare a variable to store planet data
-let key = "";
+const API_KEY_URL = "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys";
+const PLANETS_URL = "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies";
+let planetData = ''; // Declared variable to store planet data
+let key = ""; // Declared variable to store key fetched from API
+// function to get the data wanted from the entire source of data of API
 function displayPlanetInfo(planet) {
     const planetInfo = `
         <article>
@@ -27,7 +30,7 @@ function displayPlanetInfo(planet) {
             <button class="back">Back Button</button>
         </article>`;
     planetsElem.innerHTML = planetInfo;
-
+    // back button on click function
     const backButton = document.querySelector('.back');
     backButton.addEventListener('click', () => {
         planetsElem.style.display = 'none';
@@ -37,25 +40,25 @@ function displayPlanetInfo(planet) {
         footer.style.display = 'grid';
     });
 };
+// function to fetch api key from data 
 async function getApiKey() {
     try {
-        let resp = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/keys", {
+        let resp = await fetch(API_KEY_URL, {
             method: "POST"
         });
         const data = await resp.json();
         console.log(data.key);
         key = data.key;
-        // Call getPlanets here after getting the API key
         await getPlanets();
     } catch (error) {
-        console.log('Could not fetch API key');
+        console.log('Could not fetch API key', error);
         throw error;
     }
 }
-
+// function to get the data of API 
 async function getPlanets() {
     try {
-        let resp = await fetch("https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies", {
+        let resp = await fetch(PLANETS_URL, {
             method: "GET",
             headers: { "x-zocom": key },
         });
@@ -63,20 +66,30 @@ async function getPlanets() {
         planetData = data.bodies;
         console.log(planetData); // Store planet data in the variable
     } catch (error) {
-        console.log('Could not get planets');
+        console.log('Could not get planets', error);
+        throw error;
     }
 }
-
-// Call getApiKey to start the process
+// function used to show the data of only the planet being clicked on
 planetsList.forEach((planets, i) => {
-    planets.addEventListener('click', () => {
-        getApiKey();
-        const clickedPlanet = planetData[i]; // Access planet data from the stored variable
-        displayPlanetInfo(clickedPlanet);
-        planetsElem.style.display = 'block';
-        mainElmt.style.display = 'none';
-        h1Elm.style.display = 'none';
-        h3Elm.style.display = 'none';
-        footer.style.display = 'none';
+    planets.addEventListener('click', async () => {
+        try {
+            await getApiKey();
+            const clickedPlanet = planetData[i];
+            displayPlanetInfo(clickedPlanet);
+            planetsElem.style.display = 'block';
+            mainElmt.style.display = 'none';
+            h1Elm.style.display = 'none';
+            h3Elm.style.display = 'none';
+            footer.style.display = 'none';
+        } catch (error) {
+            console.error('Error processing planet click', error);
+        }
     });
 });
+
+
+
+
+
+
