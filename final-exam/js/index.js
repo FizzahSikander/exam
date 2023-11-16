@@ -8,7 +8,7 @@ const API_KEY_URL = "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/key
 const PLANETS_URL = "https://n5n3eiyjb0.execute-api.eu-north-1.amazonaws.com/bodies";
 let planetData = ''; // Declared variable to store planet data
 let key = ""; // Declared variable to store key fetched from API
-// function to get the data wanted from the entire source of data of API
+// function to get the data specifically wanted from the entire source of data of API
 function displayPlanetInfo(planet) {
     const planetInfo = `
         <article>
@@ -55,7 +55,7 @@ async function getApiKey() {
         throw error;
     }
 }
-// function to get the data of API 
+// function to get the data of all planets in API 
 async function getPlanets() {
     try {
         let resp = await fetch(PLANETS_URL, {
