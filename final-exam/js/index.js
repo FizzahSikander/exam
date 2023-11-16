@@ -1,6 +1,6 @@
 const planetsElem = document.querySelector('.newPage');
 const planetsList = document.querySelectorAll('aside');
-const mainElmt = document.querySelector('main');
+const mainElement = document.querySelector('main');
 const h1Elm = document.querySelector('h1');
 const h3Elm = document.querySelector('h3');
 const footer = document.querySelector('footer');
@@ -30,17 +30,17 @@ function displayPlanetInfo(planet) {
             <button class="back">Back Button</button>
         </article>`;
     planetsElem.innerHTML = planetInfo;
-    // back button on click function
+    // Back button on click function
     const backButton = document.querySelector('.back');
     backButton.addEventListener('click', () => {
         planetsElem.style.display = 'none';
-        mainElmt.style.display = 'grid';
+        mainElement.style.display = 'grid';
         h1Elm.style.display = 'block';
         h3Elm.style.display = 'block';
         footer.style.display = 'grid';
     });
 };
-// function to fetch api key from data 
+// Function to fetch api key from data 
 async function getApiKey() {
     try {
         let resp = await fetch(API_KEY_URL, {
@@ -70,7 +70,7 @@ async function getPlanets() {
         throw error;
     }
 }
-// function used to show the data of only the planet being clicked on
+// Function used to show the data of only the planet being clicked on
 planetsList.forEach((planets, i) => {
     planets.addEventListener('click', async () => {
         try {
@@ -78,7 +78,7 @@ planetsList.forEach((planets, i) => {
             const clickedPlanet = planetData[i];
             displayPlanetInfo(clickedPlanet);
             planetsElem.style.display = 'block';
-            mainElmt.style.display = 'none';
+            mainElement.style.display = 'none';
             h1Elm.style.display = 'none';
             h3Elm.style.display = 'none';
             footer.style.display = 'none';
@@ -87,9 +87,3 @@ planetsList.forEach((planets, i) => {
         }
     });
 });
-
-
-
-
-
-
